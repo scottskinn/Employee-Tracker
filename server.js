@@ -7,6 +7,7 @@ const DB = require('./db');
 
 
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -30,7 +31,7 @@ function promptUser() {
           "add a department",
           "add a role",
           "add an employee",
-          "and update an employee role",
+          "update an employee role",
           "Exit"
         ],
       },
@@ -52,6 +53,21 @@ console.log("option", answers, mainMenu );
       viewAllRoles();
     }
 
+    if(mainMenu === "add a department") {
+      addDepartment();
+    }
+
+    if(mainMenu === "add a role") {
+      addRole();
+    }
+
+    if(mainMenu === "add an employee") {
+      addEmployee();
+    }
+
+    if(mainMenu === "update an employee role") {
+      updateEmployee();
+    }
   });
 };
 
@@ -92,8 +108,57 @@ function viewAllRoles() {
       .then(() => promptUser());
 };
 
+function addEmployee() {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'first_name',
+      message: 'Employees first name?',
+      validate: first_name => {
+        if (first_name) {
+          return true;
+        } else {
+          console.log('Enter employees first name'); 
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'last_name',
+      message: 'Employees last name?',
+      validate: last_name => {
+        if (last_name) {
+          return true;
+        } else {
+          console.log('Enter employees last name');
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'manager_id',
+      message: 'Employees manager_id?',
+      validate: manager_id => {
+        if (manager_id) {
+          return true;
+        } else {
+          console.log('Enter employees manager_id');
+        }
+      }
+    }
+  ]).then(() => promptUser());
+};
 
-
+function addRole() {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'role_name',
+      message: ''
+    }
+  ])
+}
+// npm start
 
 promptUser();
 

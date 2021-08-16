@@ -28,6 +28,16 @@ class DB {
         );
 
     }
+
+    addEmployee() {
+        
+        `INSERT INTO employee (first_name, last_name, manager)
+        VALUES  (?,?,?)`
+        {  
+            if (err) throw err;
+        }
+                 
+    }
 };
 
 
